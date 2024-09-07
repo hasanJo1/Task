@@ -1,0 +1,20 @@
+<div class="form-container">
+  <form (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="Projects.name" name="name" required>
+
+    <label for="position">Description:</label>
+    <input id="position" [(ngModel)]="Projects.description" name="position" required>
+
+    <button type="submit">{{ isEditMode ? 'Update' : 'Save' }}</button>
+  </form>
+</div>
+
+<div class="project-list">
+  <h3>Available Projects</h3>
+  <ul>
+    <li *ngFor="let project of availableProjects" (click)="onProjectSelect(project)">
+      {{ project.name }} - {{ project.description }}
+    </li>
+  </ul>
+</div>

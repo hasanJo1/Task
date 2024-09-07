@@ -27,7 +27,32 @@
     background-color: #303f9f;
   }
   
-  .router-outlet {
+  .detail-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  h3 {
     margin-top: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  strong {
+    display: block;
+    margin-bottom: 5px;
   }
   

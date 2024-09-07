@@ -1,0 +1,17 @@
+
+
+
+  <div class="detail-container">
+    <div *ngIf="employee">
+      <h2>{{ employee.name }}</h2>
+      <p>Position: {{ employee.position }}</p>
+      
+      <h3>Assigned Projects:</h3>
+      <ul>
+        <li *ngFor="let project of employee.projects">
+          <strong>{{ project.name }}</strong>: {{ project.description }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

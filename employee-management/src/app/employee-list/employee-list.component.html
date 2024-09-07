@@ -1,0 +1,22 @@
+<div class="employee-list">
+    <h2><i class="material-icons">people</i> Employee List</h2>
+    <ul>
+  
+  
+  
+      
+      
+      <li *ngFor="let employee of employees" class="employee-item">
+        <span>{{ employee.name }}</span>
+        <div class="employee-actions">
+          <button (click)="editEmployee(employee.id)" class="action-button edit-button">
+            <i class="material-icons">edit</i> Edit
+          </button>
+          <button (click)="viewEmployee(employee.id)" class="action-button view-button">
+            <i class="material-icons">visibility</i> View
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

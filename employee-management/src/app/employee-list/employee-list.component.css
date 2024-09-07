@@ -1,0 +1,79 @@
+.employee-list {
+    max-width: 600px;
+    margin: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .employee-list h2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #3f51b5;
+  }
+  
+  .employee-list h2 .material-icons {
+    margin-right: 8px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .employee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-item:last-child {
+    border-bottom: none;
+  }
+  
+  .employee-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-button {
+    background-color: #3f51b5;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .action-button .material-icons {
+    margin-right: 5px;
+  }
+  
+  .action-button:hover {
+    background-color: #303f9f;
+  }
+  
+  .edit-button {
+    background-color: #ff9800;
+  }
+  
+  .edit-button:hover {
+    background-color: #e68a00;
+  }
+  
+  .view-button {
+    background-color: #4caf50;
+  }
+  
+  .view-button:hover {
+    background-color: #3e8e41;
+  }
+  

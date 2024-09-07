@@ -34,11 +34,16 @@ namespace EmployeeManagementAPI.Controllers
         public async Task<ActionResult<EmployeeDTO>> AddEmployee(EmployeeDTO employeeDto)
         {
             var employee = await _employeeService.AddEmployeeAsync(employeeDto);
+
+
+            
+
+
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
         }
 
         [HttpPost("assignEmployeesOnProjects")]
-        public async Task<IActionResult> AssignEmployeesOnProjects(AssignEmployeeToProjectDTO dto)
+        public async Task<IActionResult> AssignEmployeesOnProjects(EmployeeDTO dto)
         {
             var success = await _employeeService.AssignEmployeesToProjectsAsync(dto);
             if (!success) return NotFound();

@@ -1,5 +1,6 @@
 ﻿using AppService.Dtos;
 using AppService.Interfaces;
+using AppService.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementAPI.Controllers
@@ -14,7 +15,12 @@ namespace EmployeeManagementAPI.Controllers
         {
             _projectService = projectService;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProjectDTO>>> GetProjects()
+        {
+            var employees = await _projectService.GetAllProjectsAsync();
+            return Ok(employees);
+        }
         [HttpPost]
         public async Task<ActionResult<ProjectDTO>> AddProject(ProjectDTO projectDto)
         {

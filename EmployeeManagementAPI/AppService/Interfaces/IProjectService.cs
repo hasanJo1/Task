@@ -10,5 +10,6 @@ namespace AppService.Interfaces
     public interface IProjectService
     {
         Task<ProjectDTO> AddProjectAsync(ProjectDTO projectDto);
+        Task<IEnumerable<ProjectDTO>> GetAllProjectsAsync();
     }
 }

@@ -12,6 +12,6 @@ namespace AppService.Interfaces
         Task<IEnumerable<EmployeeDTO>> GetAllEmployeesAsync();
         Task<EmployeeDTO> GetEmployeeByIdAsync(int id);
         Task<EmployeeDTO> AddEmployeeAsync(EmployeeDTO employeeDto);
-        Task<bool> AssignEmployeesToProjectsAsync(AssignEmployeeToProjectDTO dto);
+        Task<bool> AssignEmployeesToProjectsAsync(EmployeeDTO dto);
     }
 }

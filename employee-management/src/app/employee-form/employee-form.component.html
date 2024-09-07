@@ -1,0 +1,42 @@
+<div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <label for="name">Name:</label>
+      <input id="name" [(ngModel)]="employee.name" name="name" required>
+  
+      <label for="position">Position:</label>
+      <input id="position" [(ngModel)]="employee.position" name="position" required>
+  
+      <div *ngFor="let project of employee.projects; let i = index">
+        <fieldset>
+          <legend>Project {{ i + 1 }}</legend>
+  
+          <label for="projectName-{{i}}">Project Name:</label>
+          <input id="projectName-{{i}}" [(ngModel)]="employee.projects[i].name" name="projectName-{{i}}" required>
+  
+          <label for="projectDescription-{{i}}">Description:</label>
+          <textarea id="projectDescription-{{i}}" [(ngModel)]="employee.projects[i].description" name="projectDescription-{{i}}"></textarea>
+  
+          <button type="button" (click)="removeProject(i)">Remove Project</button>
+        </fieldset>
+      </div>
+  
+      <button type="button" (click)="addProject()">Add Project</button>
+      <button type="button" (click)="openProjectSelection()">Assign Project from List</button>
+  
+      <button type="submit">{{ isEditMode ? 'Update' : 'Save' }}</button>
+    </form>
+  
+    <!-- Modal for project selection -->
+    <div *ngIf="isProjectSelectionOpen" class="modal">
+      <div class="modal-content">
+        <h2>Select Project</h2>
+        <ul>
+          <li *ngFor="let project of availableProjects">
+            <button (click)="assignProject(project)">{{ project.name }}</button>
+          </li>
+        </ul>
+        <button (click)="closeProjectSelection()">Close</button>
+      </div>
+    </div>
+  </div>
+  

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppService.Services
 {
@@ -35,6 +36,23 @@ namespace AppService.Services
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
             return _mapper.Map<ProjectDTO>(project);
+        }
+
+        public async Task<IEnumerable<ProjectDTO>> GetAllProjectsAsync()
+        {
+            var project = await _context.Projects.ToListAsync();
+            List<ProjectDTO> result = new List<ProjectDTO>();
+            foreach (var item in project)
+            {
+                result.Add(new ProjectDTO { 
+                 Id=item.Id,
+                  Description=item.Description,
+                   Name=item.Name
+                
+                });
+
+            }
+            return result;
         }
     }
 }

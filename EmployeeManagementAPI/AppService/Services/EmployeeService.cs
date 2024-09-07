@@ -111,35 +111,62 @@ namespace AppService.Services
 
             foreach(var p in employeeDto.Projects)
             {
-                EmployeeProject EmployeeProject = new EmployeeProject();
-                EmployeeProject.ProjectId=p.Id;
-                EmployeeProject.EmployeeId=employeeDto.Id;
-                employeeProject.Add(EmployeeProject);
+                //EmployeeProject EmployeeProject = new EmployeeProject();
+                //employee.ProjectId=p.Id;
+                //employee.EmployeeId=employeeDto.Id;
+                employeeProject.Add(new EmployeeProject()
+                { 
+                     EmployeeId=employeeDto.Id,
+                      ProjectId=p.Id,
+                       Employee=new Employee() { Name =employeeDto.Name, Id=employeeDto.Id, Position=employeeDto.Position },
+                        Project=new Project() { Id=p.Id, Name=p.Name, Description=p.Description}
+
+            });
 
             }
             employee.EmployeeProjects=employeeProject;
 
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
+            if (employee.Id==0)
+            {
+                _context.Employees.Update(employee);
+                await _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                _context.Employees.Update(employee);
+                await _context.SaveChangesAsync();
+             
+            }
+          
+            //try
+            //{
+            //    await AssignEmployeesToProjectsAsync(employeeDto);
+
+            //}
+            //catch
+            //{
+
+            //}
             return _mapper.Map<EmployeeDTO>(employee);
         }
 
-        public async Task<bool> AssignEmployeesToProjectsAsync(AssignEmployeeToProjectDTO dto)
+        public async Task<bool> AssignEmployeesToProjectsAsync(EmployeeDTO dto)
         {
             var employee = await _context.Employees
                 .Include(e => e.EmployeeProjects)
-                .FirstOrDefaultAsync(e => e.Id == dto.EmployeeId);
+                .FirstOrDefaultAsync(e => e.Id == dto.Id);
 
             if (employee == null) return false;
 
             employee.EmployeeProjects.Clear();
 
-            foreach (var projectId in dto.ProjectIds)
+            foreach (var projectId in dto.Projects)
             {
                 employee.EmployeeProjects.Add(new EmployeeProject
                 {
-                    EmployeeId = dto.EmployeeId,
-                    ProjectId = projectId
+                    EmployeeId = dto.Id,
+                    ProjectId = projectId.Id
                 });
             }
 
