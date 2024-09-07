@@ -1,9 +1,12 @@
+using AppService.Interfaces;
+using AppService.Mapping;
+using AppService.Services;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
@@ -24,7 +27,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 // Register the EmployeeContext with the connection string
 builder.Services.AddDbContext<EmployeeManagementContext>(options =>
